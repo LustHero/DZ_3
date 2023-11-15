@@ -1,0 +1,86 @@
+#include <iostream>
+#include <math.h>
+#include <string>
+#include <fstream>
+#include <algorithm>
+using namespace std;
+void Za() {
+	float S;
+	float p;
+	float n;
+	cout << "Введите сумму займа:   ";
+	cin >> S;
+	cout << "Введите процент:   ";
+	cin >> p;
+	cout << "Введите срок займа:   ";
+	cin >> n;
+	p /= 100;
+	cout << "Месячная выплата равна:  " << (S * p * (pow((1 + p), n))) / (12 * ((pow((1 + p), n)) - 1));
+}
+void Ss() {
+	float S;
+	float m;
+	float n;
+	cout << "Введите сумму займа:   ";
+	cin >> S;
+	cout << "Введите месячную выплату:   ";
+	cin >> m;
+	cout << "Введите на сколько берут займ:   ";
+	cin >> n;
+	for (float r = 0.1; r <= 1, r += 0.1;) {
+		if ((S * r * (pow((1 + r), n))) / (12 * ((pow((1 + r), n)) - 1)) == m) {
+			cout << "Процент равен:   " << r * 100;
+			break;
+		}
+		else if ((S * r * (pow((1 + r), n))) / (12 * ((pow((1 + r), n)) - 1)) > m) {
+			for (r; r <= 1, r += 0.01;) {
+				if ((S * r * (pow((1 + r), n))) / (12 * ((pow((1 + r), n)) - 1)) == m) {
+					cout << "Процент равен:   " << r * 100;
+					break;
+				}
+				else if ((S * r * (pow((1 + r), n))) / (12 * ((pow((1 + r), n)) - 1)) > m) {
+					for (r; r <= 1, r += 0.001;) {
+						if ((S * r * (pow((1 + r), n))) / (12 * ((pow((1 + r), n)) - 1)) == m) {
+							cout << "Процент равен:   " << r * 100;
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+void Co() {
+	setlocale(0, "");
+	string strok;
+	ifstream fin("C:\\Users\\semen\\source\\repos\\DZ_3\\F_1.txt");
+	for (int i = 0; i <= pow(10, 8);i++) {
+		getline(fin, strok);
+		cout << strok << endl;
+		if (strok.empty()) { break; }
+	}
+	fin.close();
+}
+void Fi() {
+	char strok[20];
+	ifstream fin("C:\\Users\\semen\\source\\repos\\DZ_3\\F_2.txt");
+	fin >> strok;
+	fin.close();
+	for (int i = 0; i <= 20; i++) {
+		if (int(strok[i]) >= 48 && int(strok[i]) <= 57) { cout << strok[i] << " "; }
+	}
+}
+void So() {
+	string strok = "AQWERTYUIOafbutGFDSZXCVBNMKJHR";
+	sort(begin(strok), end(strok));
+	cout << strok;
+}
+void main() {
+	setlocale(LC_ALL, "Russian");
+	//Za();
+	//Ss();
+	Co();
+	//Fi();
+	//So();
+	cout << "~";
+}
